@@ -1,7 +1,7 @@
 'use client';
 
 import { SUDUKO } from '@/constants/suduko';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
 import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
 import { toast } from '../../ui/use-toast';
@@ -123,11 +123,11 @@ export default function SudukoGrid() {
 		<div className='w-max mx-auto mt-5'>
 			<p className='pb-4 text-center font-medium'>Solve your suduko puzzle</p>
 			<form onSubmit={handleSubmit}>
-				<div className='shadow-spread border-[3px] border-card-foreground'>
+				<div className='shadow-spread border-[3px] border-card-foreground w-max'>
 					{suduko.map((row, rowIndex) => {
 						return (
-							<div key={`${rowIndex}`}>
-								<div className='flex'>
+							<Fragment key={`${rowIndex}`}>
+								<div className='flex w-max'>
 									{row.map((col, colIndex) => {
 										function handleChange(e: ChangeEvent<HTMLInputElement>) {
 											if ((Number(e.target.value) < 1 || Number(e.target.value) > 9) && Number(e.target.value) !== 0) {
@@ -155,7 +155,7 @@ export default function SudukoGrid() {
 										}
 
 										return (
-											<span key={`${colIndex}`} className='flex'>
+											<span key={`${colIndex}`} className='flex items-center justify-center'>
 												<Input
 													type='number'
 													onChange={handleChange}
@@ -185,15 +185,15 @@ export default function SudukoGrid() {
 										}`}
 									/>
 								)}
-							</div>
+							</Fragment>
 						);
 					})}
 				</div>
 				<Button type='submit' className='w-full mt-5 bg-card-foreground hover:bg-card-foreground/80 disabled:cursor-pointer' disabled={loading}>
-					Solve Suduko
+					Solve suduko
 				</Button>
 				<Button type='button' variant='outline' className='w-full mt-5' onClick={handleResetSuduko} disabled={loading}>
-					Reset Suduko
+					🛝 Reset suduko
 				</Button>
 				<Button type='button' variant='outline' className='w-full my-5' onClick={handleUnsolvedSuduko} disabled={loading}>
 					Set to unsolved suduko

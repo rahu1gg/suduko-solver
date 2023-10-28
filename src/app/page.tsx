@@ -6,7 +6,7 @@ export default function Home() {
 	return (
 		<Fragment>
 			<Header />
-			<main className='h-dvh'>
+			<main>
 				<section className='w-maxi mx-auto'>
 					<SudukoGrid />
 				</section>
